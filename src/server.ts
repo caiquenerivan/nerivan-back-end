@@ -6,6 +6,7 @@ import workRoutes from "./routes/workRoutes";
 import workTypeRoutes from "./routes/workTypeRoutes";
 import dotenv from "dotenv";
 import personalInfoRoutes from "./routes/personalInfoRoutes";
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ server.register(skillRoutes);
 server.register(workRoutes);
 server.register(workTypeRoutes);
 server.register(personalInfoRoutes);
+server.register(authRoutes);
 
 server.register(cors, {
     origin: '*', // Permite todas as origens (não recomendado para produção)
