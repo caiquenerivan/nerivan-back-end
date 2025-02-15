@@ -5,7 +5,6 @@ import skillRoutes from "./routes/skillRoutes";
 import workRoutes from "./routes/workRoutes";
 import workTypeRoutes from "./routes/workTypeRoutes";
 import dotenv from "dotenv";
-import personalInfoRoutes from "./routes/personalInfoRoutes";
 import authRoutes from "./routes/authRoutes";
 import userRoutes from "./routes/userRoutes";
 
@@ -17,7 +16,6 @@ const server = fastify({ logger: true });
 server.register(skillRoutes);
 server.register(workRoutes);
 server.register(workTypeRoutes);
-//server.register(personalInfoRoutes);
 server.register(authRoutes);
 server.register(userRoutes);
 
