@@ -52,7 +52,7 @@ const start = async () => {
   try {
     await server.listen({ host: '0.0.0.0', port: Number(port) });
     console.log(`Server listening on port ${port}`);
-    console.log(apiKeyGenerator);
+    //console.log(apiKeyGenerator);
     
   } catch (err) {
     server.log.error(err);
