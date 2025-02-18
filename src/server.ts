@@ -27,7 +27,8 @@ server.addHook('onRequest', async (request: FastifyRequest, reply: FastifyReply)
 
 const allowedOrigins = [
   'https://nerivan.com.br',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'http://localhost:5173',
 ];
 
 // Registrar rotas
