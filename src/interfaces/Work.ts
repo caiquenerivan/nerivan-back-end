@@ -2,13 +2,13 @@ import { Skill } from "./Skill";
 
 export interface Work {
   id?: number;
-  titlePt: string;
-  titleEn: string;
-  descriptionPt: string;
-  descriptionEn: string;
+  title_pt: string;
+  title_en: string;
+  description_pt: string;
+  description_en: string;
   photo: string;
-  linkGitHub?: string;
-  linkProject?: string;
+  link_gitHub?: string;
+  link_project?: string;
   skills: Skill[];
-  mainLanguage: Skill;
+  main_language: Skill;
 }

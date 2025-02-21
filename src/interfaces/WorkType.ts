@@ -1,8 +1,8 @@
 export interface WorkType {
   id?: number;
-  titlePt: string;
-  titleEn: string;
-  descPt: string;
-  descEn: string;
+  title_pt: string;
+  title_en: string;
+  desc_pt: string;
+  desc_en: string;
   image: string;
 }

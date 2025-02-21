@@ -6,7 +6,7 @@ const WorkTypeModel = {
   create: async (workType: WorkType): Promise<WorkType> => {
     const { rows } = await pool.query(
       "INSERT INTO work_types (title_pt, title_en, desc_pt, desc_en, image) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-      [workType.titlePt, workType.titleEn, workType.descPt, workType.descEn, workType.image]
+      [workType.title_pt, workType.title_en, workType.desc_pt, workType.desc_en, workType.image]
     );
     return rows[0];
   },
@@ -32,7 +32,7 @@ const WorkTypeModel = {
         image = $5
       WHERE id = $6
       RETURNING *`,
-      [workType.titlePt, workType.titleEn, workType.descPt, workType.descEn, workType.image, id]
+      [workType.title_pt, workType.title_en, workType.desc_pt, workType.desc_en, workType.image, id]
     );
     return rows[0] || null;
   },

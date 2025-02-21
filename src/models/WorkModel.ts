@@ -16,14 +16,14 @@ const WorkModel = {
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8) 
         RETURNING *`,
         [
-          work.titlePt,
-          work.titleEn,
-          work.descriptionPt,
-          work.descriptionEn,
+          work.title_pt,
+          work.title_en,
+          work.description_pt,
+          work.description_en,
           work.photo,
-          work.linkGitHub,
-          work.linkProject,
-          work.mainLanguage.id,
+          work.link_gitHub,
+          work.link_project,
+          work.main_language.id,
         ]
       );
 
@@ -85,14 +85,14 @@ const WorkModel = {
         WHERE id = $9
         RETURNING *`,
         [
-          work.titlePt,
-          work.titleEn,
-          work.descriptionPt,
-          work.descriptionEn,
+          work.title_pt,
+          work.title_en,
+          work.description_pt,
+          work.description_en,
           work.photo,
-          work.linkGitHub,
-          work.linkProject,
-          work.mainLanguage.id,
+          work.link_gitHub,
+          work.link_project,
+          work.main_language.id,
           id,
         ]
       );
