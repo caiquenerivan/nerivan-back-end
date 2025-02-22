@@ -17,7 +17,7 @@ const WorkTypeModel = {
     return rows;
   },
   findById: async (id: number): Promise<WorkType | null> => {
-    const { rows } = await pool.query("SELECT * FROM work_types WHERE id = $1", [id]);
+    const { rows } = await pool.query("SELECT * FROM work_types WHERE work_type_id = $1", [id]);
     return rows[0] || null;
   },
 
@@ -30,7 +30,7 @@ const WorkTypeModel = {
         desc_pt = $3,
         desc_en = $4,
         image = $5
-      WHERE id = $6
+      WHERE work_type_id = $6
       RETURNING *`,
       [workType.title_pt, workType.title_en, workType.desc_pt, workType.desc_en, workType.image, id]
     );
@@ -39,7 +39,7 @@ const WorkTypeModel = {
 
   // DELETE
   delete: async (id: number): Promise<void> => {
-    await pool.query("DELETE FROM work_types WHERE id = $1", [id]);
+    await pool.query("DELETE FROM work_types WHERE work_type_id = $1", [id]);
   },
 };
 

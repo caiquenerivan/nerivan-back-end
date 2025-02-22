@@ -40,24 +40,24 @@ const UserModel = {
 
   // Busca usuário pelo id
   async findById(id: number): Promise<User | null> {
-    const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+    const { rows } = await pool.query('SELECT * FROM users WHERE user_id = $1', [id]);
     return rows[0] || null;
   },
 
   // Atualizar os dados do usuario
-   async updateUser (id: number, user: User): Promise<User | null> {
+   async updateUser (user_id: number, user: User): Promise<User | null> {
     const hashedPassword = await bcrypt.hash(user.password, saltRounds);
 
     const { rows } = await pool.query(
-      "UPDATE users SET username = $1, password = $2, role = $3, foto = $4, about_pt = $5, about_en = $6, work_title_pt = $7, work_title_en = $8, email = $9 WHERE id = $10 RETURNING *",
-      [user.username, hashedPassword, user.role, user.foto, user.about_pt, user.about_en, user.work_title_pt, user.work_title_en, user.email, id]
+      "UPDATE users SET username = $1, password = $2, role = $3, foto = $4, about_pt = $5, about_en = $6, work_title_pt = $7, work_title_en = $8, email = $9 WHERE user_id = $10 RETURNING *",
+      [user.username, hashedPassword, user.role, user.foto, user.about_pt, user.about_en, user.work_title_pt, user.work_title_en, user.email, user_id]
     )
     return rows[0] || null;
   },
 
   //deletar usuário
-  async deleteUser (id: number): Promise<void> {
-    await pool.query("DELETE FROM users WHERE id = $1", [id]);
+  async deleteUser (user_id: number): Promise<void> {
+    await pool.query("DELETE FROM users WHERE user_id = $1", [user_id]);
   }
 
 };

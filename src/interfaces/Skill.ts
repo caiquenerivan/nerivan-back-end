@@ -1,5 +1,5 @@
 export interface Skill {
-    id?: number;
+    skill_id?: number;
     name: string;
     color_hexa: string;
 }

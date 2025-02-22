@@ -19,7 +19,7 @@ const WorkController = {
       const works = await WorkModel.findAll();
       reply.send(works);
     } catch (error) {
-      reply.status(500).send({ error: "Erro ao buscar works" });
+      reply.status(500).send({ error: "Erro ao buscar works" + error});
     }
   },
 
@@ -33,7 +33,7 @@ const WorkController = {
       if (!updatedWork) reply.status(404).send({ error: "Work não encontrado" });
       else reply.send(updatedWork);
     } catch (error) {
-      reply.status(500).send({ error: "Erro ao atualizar work" });
+      reply.status(500).send({ error: "Erro ao atualizar work " + error});
     }
   },
 

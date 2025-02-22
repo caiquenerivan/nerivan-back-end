@@ -34,7 +34,7 @@ const authRoutes = async (fastify: FastifyInstance) => {
         }
         // Gera token JWT
         const token = jwt.sign(
-            { userId: user.id, role: user.role },
+            { userId: user.user_id, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );

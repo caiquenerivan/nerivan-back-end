@@ -21,9 +21,9 @@ const WorkModel = {
           work.description_pt,
           work.description_en,
           work.photo,
-          work.link_gitHub,
+          work.link_github,
           work.link_project,
-          work.main_language.id,
+          work.main_language.skill_id,
         ]
       );
 
@@ -31,7 +31,7 @@ const WorkModel = {
       for (const skill of work.skills) {
         await client.query(
           "INSERT INTO work_skills (work_id, skill_id) VALUES ($1, $2)",
-          [workRows[0].id, skill.id]
+          [workRows[0].work_id, skill.skill_id]
         );
       }
 
@@ -53,14 +53,14 @@ const WorkModel = {
         json_agg(s.*) AS skills,
         ml.* AS main_language
       FROM works w
-      LEFT JOIN work_skills ws ON w.id = ws.work_id
-      LEFT JOIN skills s ON ws.skill_id = s.id
-      LEFT JOIN skills ml ON w.main_language_id = ml.id
-      GROUP BY w.id, ml.id
+      LEFT JOIN work_skills ws ON w.work_id = ws.work_id
+      LEFT JOIN skills s ON ws.skill_id = s.skill_id
+      LEFT JOIN skills ml ON w.main_language_id = ml.skill_id
+      GROUP BY w.work_id, ml.skill_id
     `);
     return rows.map(row => ({
       ...row,
-      skills: row.skills.filter((skill: Skill) => skill.id !== null),
+      skills: row.skills.filter((skill: Skill) => skill.skill_id !== null),
       mainLanguage: row.main_language,
     }));
   },
@@ -82,7 +82,7 @@ const WorkModel = {
           link_github = $6,
           link_project = $7,
           main_language_id = $8
-        WHERE id = $9
+        WHERE work_id = $9
         RETURNING *`,
         [
           work.title_pt,
@@ -90,9 +90,9 @@ const WorkModel = {
           work.description_pt,
           work.description_en,
           work.photo,
-          work.link_gitHub,
+          work.link_github,
           work.link_project,
-          work.main_language.id,
+          work.main_language.skill_id,
           id,
         ]
       );
@@ -102,7 +102,7 @@ const WorkModel = {
       for (const skill of work.skills) {
         await client.query(
           "INSERT INTO work_skills (work_id, skill_id) VALUES ($1, $2)",
-          [id, skill.id]
+          [id, skill.skill_id]
         );
       }
 
@@ -122,7 +122,7 @@ const WorkModel = {
     try {
       await client.query("BEGIN");
       await client.query("DELETE FROM work_skills WHERE work_id = $1", [id]);
-      await client.query("DELETE FROM works WHERE id = $1", [id]);
+      await client.query("DELETE FROM works WHERE work_id = $1", [id]);
       await client.query("COMMIT");
     } catch (error) {
       await client.query("ROLLBACK");

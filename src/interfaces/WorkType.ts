@@ -1,5 +1,5 @@
 export interface WorkType {
-  id?: number;
+  work_type_id?: number;
   title_pt: string;
   title_en: string;
   desc_pt: string;

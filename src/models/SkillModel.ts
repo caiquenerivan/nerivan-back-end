@@ -19,14 +19,14 @@ const SkillModel = {
 
   //FIND BY ID
   findById: async (id: number): Promise<Skill | null> => {
-    const { rows } = await pool.query("SELECT * FROM skills WHERE id = $1", [id]);
+    const { rows } = await pool.query("SELECT * FROM skills WHERE skill_id = $1", [id]);
     return rows[0] || null;
   },
 
   // UPDATE
   update: async (id: number, skill: Skill): Promise<Skill | null> => {
     const { rows } = await pool.query(
-      "UPDATE skills SET name = $1, color_hexa = $2 WHERE id = $3 RETURNING *",
+      "UPDATE skills SET name = $1, color_hexa = $2 WHERE skill_id = $3 RETURNING *",
       [skill.name, skill.color_hexa, id]
     );
     return rows[0] || null;
@@ -34,7 +34,7 @@ const SkillModel = {
 
   // DELETE
   delete: async (id: number): Promise<void> => {
-    await pool.query("DELETE FROM skills WHERE id = $1", [id]);
+    await pool.query("DELETE FROM skills WHERE skill_id = $1", [id]);
   },
 };
 
