@@ -39,7 +39,7 @@ const authRoutes = async (fastify: FastifyInstance) => {
             { expiresIn: '1h' }
         );
 
-        reply.send({ token });
+        reply.send({ token, user });
     });
 };
 
